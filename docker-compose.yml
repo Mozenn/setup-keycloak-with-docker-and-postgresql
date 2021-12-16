@@ -3,34 +3,34 @@ services:
   postgres:
     container_name: postgres_blog
     image: "postgres:13.2"
-    env_file:
-      - ./database.dev.env
-    networks:
-      - backend
     volumes:
       - ./db-data:/var/lib/postgresql/data/
       - ./sql:/docker-entrypoint-initdb.d/:ro
+    env_file:
+      - ./database.dev.env
     ports:
-      - "127.0.0.1:5432:5432"
+      - "5432:5432"
+    networks:
+      - backend
   pgadmin:
     container_name: pgadmin_blog
     image: "dpage/pgadmin4:5.1"
     env_file:
       - ./database.dev.env
     ports:
-      - "127.0.0.1:5050:80"
-    networks:
+      - "5050:80"
+    networks: 
       - backend
   keycloak:
     container_name: keycloak_blog
     image: "jboss/keycloak:15.0.2"
-    depends_on:
-      - "postgres"
     env_file:
       - ./keycloak.dev.env
+    depends_on:
+      - "postgres"
     ports:
-      - "127.0.0.1:8180:8080"
-      - "127.0.0.1:8787:8787" # debug port
+      - "8180:8080"
+      - "8787:8787" # debug port
     networks:
       - backend
 
