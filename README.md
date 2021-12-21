@@ -2,4 +2,4 @@
 
 Companion repository for the blog post : "Setup Keycloak with Docker and PostgreSQL"
 
-Checkout the blog post for more details : LINK
+Checkout the blog post for more details : https://gauthier-cassany.com/posts/setup-keycloak-docker
